@@ -48,7 +48,7 @@ export default function ComingSoon({ icon, title, teaser }: ComingSoonProps) {
 
         {/* Description */}
         <p className="text-lg text-ink/70 max-w-xl mx-auto">
-          Nous construisons quelque chose d'extraordinaire. Cette fonctionnalité sera disponible très prochainement.
+          Nous construisons quelque chose d&apos;extraordinaire. Cette fonctionnalité sera disponible très prochainement.
         </p>
 
         {/* Email Notification Form */}

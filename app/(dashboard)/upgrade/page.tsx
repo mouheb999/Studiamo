@@ -62,7 +62,7 @@ export default function UpgradePage() {
           Choisissez votre plan
         </h1>
         <p className="text-lg text-ink/60">
-          Débloquez toutes les fonctionnalités et maximisez vos chances d'admission
+          Débloquez toutes les fonctionnalités et maximisez vos chances d&apos;admission
         </p>
       </div>
 
@@ -125,7 +125,7 @@ export default function UpgradePage() {
             </div>
             <div className="flex items-start space-x-2">
               <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-              <span className="text-sm text-ink">Assistant de candidature</span>
+              <span className="text-sm text-ink">Assistant d&apos;IA personnel</span>
             </div>
             <div className="flex items-start space-x-2">
               <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -281,7 +281,7 @@ export default function UpgradePage() {
             Prêt à commencer votre voyage ?
           </h3>
           <p className="text-white/90 mb-6">
-            Rejoignez des centaines d'étudiants tunisiens qui réalisent leur rêve d'étudier en Italie
+            Rejoignez des centaines d&apos;étudiants tunisiens qui réalisent leur rêve d&apos;étudier en Italie
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button onClick={handlePremiumUpgrade} size="lg" className="bg-white text-primary hover:bg-white/90">

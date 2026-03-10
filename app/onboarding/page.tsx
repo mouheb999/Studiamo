@@ -196,7 +196,7 @@ export default function OnboardingPage() {
                 <h2 className="text-3xl font-display font-bold text-ink mb-2">
                   Quel est votre diplôme actuel ?
                 </h2>
-                <p className="text-ink/60">Sélectionnez votre niveau d'études</p>
+                <p className="text-ink/60">Sélectionnez votre niveau d&apos;études</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -224,9 +224,9 @@ export default function OnboardingPage() {
               <div className="text-center mb-8">
                 <Briefcase className="w-16 h-16 text-primary mx-auto mb-4" />
                 <h2 className="text-3xl font-display font-bold text-ink mb-2">
-                  Qu'avez-vous étudié ?
+                  Qu&apos;avez-vous étudié ?
                 </h2>
-                <p className="text-ink/60">Votre domaine d'études actuel</p>
+                <p className="text-ink/60">Votre domaine d&apos;études actuel</p>
               </div>
 
               <div className="space-y-3">
@@ -266,7 +266,7 @@ export default function OnboardingPage() {
               <div className="text-center mb-8">
                 <Target className="w-16 h-16 text-primary mx-auto mb-4" />
                 <h2 className="text-3xl font-display font-bold text-ink mb-2">
-                  Que voulez-vous étudier en Italie ?
+                  Qu&apos;aimeriez-vous étudier en Italie ?
                 </h2>
                 <p className="text-ink/60">Votre domaine cible</p>
               </div>
