@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Eye, EyeOff, Loader2, MessageSquare, GraduationCap, FileText } from 'lucide-react'
+import { Logo } from '@/components/shared/Logo'
 
 export default function LoginPage() {
   return (
@@ -64,10 +65,15 @@ function LoginForm() {
   return (
     <div className="min-h-screen flex">
       {/* Left Panel - Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-bg">
+      <div className="flex-1 flex items-center justify-center px-6 py-12 md:p-8 bg-bg">
         <div className="w-full max-w-md">
+          {/* Logo on mobile */}
+          <div className="md:hidden flex justify-center mb-8">
+            <Logo size="md" />
+          </div>
+          
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-display font-bold text-ink mb-2">Bon retour !</h2>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-ink mb-2">Bon retour !</h2>
             <p className="text-ink/60">Connectez-vous pour continuer votre parcours</p>
           </div>
 
@@ -76,7 +82,7 @@ function LoginForm() {
             <Button
               type="button"
               variant="outline"
-              className="w-full"
+              className="w-full h-12 text-base"
               onClick={handleGoogleSignIn}
             >
               <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
@@ -119,6 +125,8 @@ function LoginForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="h-12 text-base"
+                style={{ fontSize: '16px' }}
               />
             </div>
 
@@ -138,6 +146,8 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
+                  className="h-12 text-base"
+                  style={{ fontSize: '16px' }}
                 />
                 <button
                   type="button"
@@ -172,7 +182,7 @@ function LoginForm() {
             )}
 
             {/* Submit Button */}
-            <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={loading}>
+            <Button type="submit" className="w-full h-12 text-base bg-primary hover:bg-primary/90" disabled={loading}>
               {loading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -193,8 +203,8 @@ function LoginForm() {
         </div>
       </div>
 
-      {/* Right Panel - Animated Preview */}
-      <div className="hidden lg:flex lg:w-1/2 bg-dark-bg text-white flex-col justify-between p-12 relative overflow-hidden">
+      {/* Right Panel - Animated Preview - Hidden on mobile */}
+      <div className="hidden md:flex md:w-1/2 bg-dark-bg text-white flex-col justify-between p-12 relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-[9px] flex">
           <div className="flex-1 bg-italian-green"></div>
           <div className="flex-1 bg-white"></div>
@@ -202,7 +212,9 @@ function LoginForm() {
         </div>
         
         <div className="relative z-10">
-          <h1 className="text-5xl font-display font-bold mb-4">StudiAmo</h1>
+          <div className="text-white">
+            <Logo size="lg" />
+          </div>
           <p className="text-xl text-white/80">Tout ce dont vous avez besoin pour étudier en Italie</p>
         </div>
 
