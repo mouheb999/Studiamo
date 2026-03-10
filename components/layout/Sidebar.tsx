@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { createClient } from '@/lib/supabase/client'
 import { useEffect, useState } from 'react'
 import type { Profile } from '@/lib/types'
+import { Logo } from '@/components/shared/Logo'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
@@ -28,7 +29,7 @@ const navigation = [
   { name: 'Guide IA', href: '/chat', icon: MessageSquare, special: true },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ className = '' }: { className?: string }) {
   const pathname = usePathname()
   const router = useRouter()
   const [profile, setProfile] = useState<Profile | null>(null)
@@ -95,11 +96,13 @@ export default function Sidebar() {
   }
 
   return (
-    <div className="w-64 bg-dark-bg text-white flex flex-col h-screen fixed left-0 top-0">
+    <div className={`w-64 bg-dark-bg text-white flex flex-col h-screen fixed left-0 top-0 ${className}`}>
       {/* Logo */}
       <div className="p-6 border-b border-white/10">
         <Link href="/dashboard">
-          <h1 className="text-2xl font-display font-bold">StudiAmo</h1>
+          <div className="text-white">
+            <Logo size="md" />
+          </div>
         </Link>
       </div>
 

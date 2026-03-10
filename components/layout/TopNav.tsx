@@ -3,9 +3,9 @@
 import { Bell, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 
-export default function TopNav() {
+export default function TopNav({ className = '' }: { className?: string }) {
   return (
-    <div className="h-16 bg-white border-b border-ink/10 flex items-center justify-between px-6">
+    <div className={`h-16 bg-white border-b border-ink/10 flex items-center justify-between px-6 ${className}`}>
       {/* Search */}
       <div className="flex-1 max-w-md">
         <div className="relative">

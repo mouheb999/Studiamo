@@ -118,10 +118,10 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-8 text-white">
-        <h1 className="text-3xl font-display font-bold mb-2">
+      <div className="bg-gradient-to-r from-primary to-accent rounded-xl p-4 md:p-8 text-white">
+        <h1 className="text-xl md:text-3xl font-display font-bold mb-2">
           Bienvenue, {profile?.full_name || 'Étudiant'} 👋
         </h1>
         <p className="text-white/90">
@@ -130,13 +130,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Progress Card */}
-      <Card className="p-6">
+      <Card className="p-4 md:p-6">
         <h2 className="text-xl font-display font-bold text-ink mb-6">Votre progression</h2>
         
         <div className="flex flex-col md:flex-row items-center gap-8">
           {/* Circular Progress */}
-          <div className="relative w-32 h-32 flex-shrink-0">
-            <svg className="w-32 h-32 transform -rotate-90">
+          <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0">
+            <svg className="w-full h-full transform -rotate-90" viewBox="0 0 128 128">
               <circle
                 cx="64"
                 cy="64"
@@ -160,7 +160,7 @@ export default function DashboardPage() {
               />
             </svg>
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-3xl font-bold text-primary">{Math.round(progressPercentage)}%</span>
+              <span className="text-2xl md:text-3xl font-bold text-primary">{Math.round(progressPercentage)}%</span>
             </div>
           </div>
 
@@ -189,9 +189,9 @@ export default function DashboardPage() {
       </Card>
 
       {/* 3-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {/* Next Action */}
-        <Card className="p-6">
+        <Card className="p-4 md:p-6">
           <h3 className="text-lg font-display font-bold text-ink mb-4">Prochaine étape</h3>
           <div className="space-y-4">
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -211,7 +211,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* Deadlines */}
-        <Card className="p-6">
+        <Card className="p-4 md:p-6">
           <h3 className="text-lg font-display font-bold text-ink mb-4">Deadlines importantes</h3>
           <div className="space-y-3">
             {upcomingDeadlines.map((deadline, index) => (
@@ -231,7 +231,7 @@ export default function DashboardPage() {
         </Card>
 
         {/* AI Guide Quick Access */}
-        <Card className="p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
+        <Card className="p-4 md:p-6 bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
           <h3 className="text-lg font-display font-bold text-ink mb-4">Guide IA</h3>
           <div className="space-y-4">
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
@@ -263,11 +263,11 @@ export default function DashboardPage() {
       {/* Feature Cards */}
       <div>
         <h2 className="text-xl font-display font-bold text-ink mb-4">Fonctionnalités</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
           {features.map((feature) => {
             const Icon = feature.icon
             return (
-              <Card key={feature.title} className="p-6 relative overflow-hidden group hover:shadow-lg transition-all">
+              <Card key={feature.title} className="p-4 md:p-6 relative overflow-hidden group hover:shadow-lg transition-all">
                 {feature.comingSoon && (
                   <Badge className="absolute top-3 right-3 bg-accent text-white text-xs">
                     Bientôt
@@ -294,10 +294,10 @@ export default function DashboardPage() {
 
       {/* CTA for Free Users */}
       {profile?.tier === 'free' && (
-        <Card className="p-8 bg-gradient-to-r from-primary to-accent text-white">
+        <Card className="p-4 md:p-8 bg-gradient-to-r from-primary to-accent text-white">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-display font-bold mb-2">
+              <h3 className="text-xl md:text-2xl font-display font-bold mb-2">
                 Passez en Premium
               </h3>
               <p className="text-white/90">
