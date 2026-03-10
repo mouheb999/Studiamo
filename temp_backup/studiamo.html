@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudiAmo — Study in Italy, Without the Chaos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F0F8F8;
+    --ink: #053D4E;
+    --olive: #0A6E7C;
+    --terracotta: #007A8A;
+    --gold: #00BCD4;
+    --sage: #00ACC1;
+    --mist: #E0F4F7;
+    --italian-green: #006B3C;
+    --italian-red: #8B1A2A;
+    --accent: #00BCD4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(12px);
+    background: rgba(240, 248, 248, 0.92);
+    border-bottom: 1px solid rgba(0, 122, 138, 0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--terracotta); }
+
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--olive);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--terracotta); }
+
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+
+  .nav-cta {
+    background: var(--ink) !important;
+    color: var(--cream) !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: #007A8A !important; color: white !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 80px 56px 80px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--mist);
+    border: 1px solid rgba(74, 82, 64, 0.2);
+    padding: 6px 14px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 32px;
+    width: fit-content;
+  }
+
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00BCD4;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+    color: var(--ink);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: #007A8A;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--olive);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 44px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 56px;
+  }
+
+  .btn-primary {
+    background: #007A8A;
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 4px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #005F6D;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 122, 138, 0.35);
+  }
+
+  .btn-secondary {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .btn-secondary:hover { opacity: 1; }
+
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(74, 82, 64, 0.15);
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--olive);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  /* ── HERO RIGHT ── */
+  .hero-right {
+    background: linear-gradient(145deg, #042D3A, #053D4E, #064A5C);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.25) 0%, transparent 70%);
+  }
+
+  .hero-right::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -50px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 107, 60, 0.2) 0%, transparent 70%);
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 32px;
+    width: 360px;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(20px);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .ai-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #006B3C, #00ACC1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .card-header-text h4 {
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .card-header-text p {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+  }
+
+  .chat-bubble {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+
+  .chat-ai {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .chat-user {
+    background: #007A8A;
+    color: white;
+    margin-left: 20px;
+  }
+
+  .typing-indicator {
+    display: flex; gap: 4px; align-items: center;
+    padding: 12px 16px;
+  }
+
+  .typing-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    animation: typing 1.4s infinite;
+  }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-4px); }
+  }
+
+  .step-pills {
+    display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;
+  }
+
+  .pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+  }
+
+  .pill.active {
+    background: rgba(0, 188, 212, 0.2);
+    border-color: #00BCD4;
+    color: #00BCD4;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .section { padding: 100px 80px; }
+
+  .problem {
+    background: linear-gradient(160deg, #031E28, #042D3A, #053D4E);
+    color: white;
+    padding: 100px 80px;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #007A8A;
+    margin-bottom: 20px;
+  }
+
+  .problem .section-label { color: #00BCD4; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+  }
+
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pain-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    transition: border-color 0.2s;
+  }
+
+  .pain-item:hover { border-color: rgba(0, 188, 212, 0.35); }
+
+  .pain-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+
+  .pain-item h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+  }
+
+  .pain-item p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+
+  .agency-cost-box {
+    background: rgba(139, 26, 42, 0.1);
+    border: 1px solid rgba(139, 26, 42, 0.3);
+    border-radius: 12px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cost-big {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #D64E6A;
+    line-height: 1;
+  }
+
+  .cost-label {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
+
+  .cost-divider {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    color: #00BCD4;
+    margin: 16px 0;
+  }
+
+  .cost-our {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    color: #00E5FF;
+    line-height: 1;
+  }
+
+  .cost-tag {
+    display: inline-block;
+    background: rgba(0, 188, 212, 0.12);
+    border: 1px solid rgba(0, 188, 212, 0.3);
+    color: #00BCD4;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-top: 12px;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .how {
+    padding: 100px 80px;
+    background: var(--mist);
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 10px;
+    padding: 28px 24px;
+    position: relative;
+    border: 1px solid rgba(74, 82, 64, 0.1);
+    transition: all 0.3s;
+  }
+
+  .step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(26, 20, 16, 0.08);
+    border-color: rgba(0, 122, 138, 0.3);
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(26, 20, 16, 0.06);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .step-icon { font-size: 28px; margin-bottom: 14px; }
+
+  .step-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .step-card p {
+    font-size: 13.5px;
+    color: var(--olive);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── PRICING ── */
+  .pricing {
+    padding: 100px 80px;
+    background: var(--cream);
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .price-card {
+    border-radius: 12px;
+    padding: 36px 32px;
+    border: 1.5px solid rgba(74, 82, 64, 0.15);
+    background: white;
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .price-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px rgba(26, 20, 16, 0.08);
+  }
+
+  .price-card.featured {
+    background: linear-gradient(145deg, #042D3A, #053D4E);
+    border-color: #007A8A;
+    color: white;
+  }
+
+  .price-card.vip {
+    background: linear-gradient(145deg, #1A0A10, #2A0D18);
+    border-color: #8B1A2A;
+    color: white;
+  }
+
+  .featured-tag {
+    position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    background: #007A8A;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .vip-tag {
+    position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    background: #8B1A2A;
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .plan-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 12px;
+  }
+
+  .featured .plan-name, .vip .plan-name { color: rgba(255,255,255,0.4); }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .featured .price-amount, .vip .price-amount { color: white; }
+
+  .vip .price-amount { color: #FF6B7A; }
+
+  .price-currency {
+    font-size: 20px;
+    font-weight: 300;
+    vertical-align: super;
+  }
+
+  .price-period {
+    font-size: 13px;
+    color: var(--olive);
+    margin-bottom: 28px;
+  }
+
+  .featured .price-period, .vip .price-period { color: rgba(255,255,255,0.4); }
+
+  .price-divider {
+    height: 1px;
+    background: rgba(74, 82, 64, 0.12);
+    margin-bottom: 24px;
+  }
+
+  .featured .price-divider, .vip .price-divider { background: rgba(255,255,255,0.08); }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .feature-list li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .featured .feature-list li, .vip .feature-list li { color: rgba(255,255,255,0.8); }
+
+  .check { color: #007A8A; font-weight: 700; }
+  .featured .check { color: #00BCD4; }
+  .vip .check { color: #FF8A95; }
+
+  .price-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    letter-spacing: 0.02em;
+  }
+
+  .price-btn-outline {
+    background: transparent;
+    border: 1.5px solid rgba(74, 82, 64, 0.25);
+    color: var(--ink);
+  }
+
+  .price-btn-outline:hover { border-color: var(--ink); background: var(--ink); color: white; }
+
+  .price-btn-primary {
+    background: #007A8A;
+    color: white;
+  }
+
+  .price-btn-primary:hover { background: #005F6D; transform: translateY(-1px); }
+
+  .price-btn-gold {
+    background: #8B1A2A;
+    color: white;
+  }
+
+  .price-btn-gold:hover { background: #6E1220; transform: translateY(-1px); }
+
+  /* ── TRUST ── */
+  .trust {
+    padding: 80px;
+    background: var(--mist);
+    text-align: center;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 800px;
+    margin: 48px auto 0;
+  }
+
+  .trust-item {
+    background: white;
+    border-radius: 10px;
+    padding: 28px 20px;
+    border: 1px solid rgba(74, 82, 64, 0.1);
+  }
+
+  .trust-icon { font-size: 28px; margin-bottom: 12px; }
+
+  .trust-item h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .trust-item p {
+    font-size: 13px;
+    color: var(--olive);
+    line-height: 1.6;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 100px 80px;
+    background: linear-gradient(160deg, #031E28, #042D3A, #053D4E);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 188, 212, 0.12) 0%, transparent 70%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 900;
+    color: white;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-section h2 em { color: #00BCD4; font-style: italic; }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.5);
+    font-size: 16px;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-light {
+    background: white;
+    color: var(--ink);
+    padding: 16px 36px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-light:hover { background: var(--cream); transform: translateY(-1px); }
+
+  .btn-outline-light {
+    background: transparent;
+    color: white;
+    padding: 16px 36px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-outline-light:hover { border-color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #020F14;
+    padding: 40px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-logo span { color: #00BCD4; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 400px; }
+    .hero-left { padding: 40px 24px; }
+    .section, .how, .pricing, .problem { padding: 60px 24px; }
+    .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .cta-section { padding: 60px 24px; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .trust { padding: 60px 24px; }
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.4;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    animation: scroll-down 1.5s infinite;
+  }
+
+  @keyframes scroll-down {
+    to { top: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Studi<span>Amo</span></div>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+    <a href="#pricing" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Now available for Tunisian students
+    </div>
+    <h1>Study in Italy.<br><em>Without the</em><br>chaos.</h1>
+    <p class="hero-sub">AI-powered guidance that replaces expensive agencies. Your complete roadmap — documents, universities, scholarships — in one place.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Start for free →</a>
+      <a href="#how" class="btn-secondary">See how it works ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">949 TND</div>
+        <div class="stat-label">vs 7,000 at agencies</div>
+      </div>
+      <div>
+        <div class="stat-num">24h</div>
+        <div class="stat-label">VIP document audit</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Languages supported</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="card-header">
+        <div class="ai-avatar">🎓</div>
+        <div class="card-header-text">
+          <h4>StudiAmo AI Guide</h4>
+          <p>Always online • Arabic, French, English</p>
+        </div>
+      </div>
+
+      <div class="chat-bubble chat-user">
+        Ma question sur la Dichiarazione di Valore — qui la fait et combien ça coûte ?
+      </div>
+
+      <div class="chat-bubble chat-ai">
+        La <strong>Dichiarazione di Valore</strong> est délivrée par le Consulat d'Italie à Tunis. Il faut apporter vos diplômes originaux + traductions assermentées. Frais : entre 50–80 TND. Le délai est 3–10 jours ouvrables. Je veux vous montrer la liste exacte des documents ?
+      </div>
+
+      <div class="typing-indicator">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+
+      <div class="step-pills">
+        <span class="pill active">✓ Profile créé</span>
+        <span class="pill active">✓ Checklist générée</span>
+        <span class="pill">Apostille en cours</span>
+        <span class="pill">Universitaly</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      Scroll
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+  <div class="section-label">The real problem</div>
+  <div class="section-title" style="color:white">Why students pay 7,000 TND<br>to agencies — and still struggle.</div>
+
+  <div class="problem-grid">
+    <ul class="pain-list">
+      <li class="pain-item">
+        <span class="pain-icon">📄</span>
+        <div>
+          <h4>No one explains the documents</h4>
+          <p>Apostille? Dichiarazione di Valore? Legalisation? Most students have never heard these words until they're stuck at a consulate window.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <span class="pain-icon">📅</span>
+        <div>
+          <h4>Deadlines are invisible until it's too late</h4>
+          <p>Italian university deadlines vary by program, and missing one means waiting a full year. Nobody sends you an alert.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <span class="pain-icon">💸</span>
+        <div>
+          <h4>Agencies charge a fortune for process work</h4>
+          <p>500–1,500 TND for filling forms you could do yourself — if someone just explained what each field means.</p>
+        </div>
+      </li>
+      <li class="pain-item">
+        <span class="pain-icon">🎓</span>
+        <div>
+          <h4>Scholarships nobody mentions</h4>
+          <p>DSU, merit scholarships, regional grants — most students apply with zero knowledge of what financial aid exists.</p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="agency-cost-box">
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Agency charges</div>
+      <div class="cost-big">7,000</div>
+      <div class="cost-label">TND — with no tracking, no transparency</div>
+      <div class="cost-divider">vs</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:8px;">StudiAmo VIP — done-for-you</div>
+      <div class="cost-our">949</div>
+      <div class="cost-tag">500 TND now · 449 TND after acceptance</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how fade-up" id="how">
+  <div class="section-label">The process</div>
+  <div class="section-title">Your complete roadmap,<br>step by step.</div>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div style="color:rgba(44, 42, 42, 0.4);" class="step-num">01</div>
+      <div class="step-icon">🧭</div>
+      <h3>Smart Onboarding</h3>
+      <p>Tell us your degree, target field, and budget. The AI generates your exact personal checklist — not generic advice.</p>
+    </div>
+    <div class="step-card">
+      <div style="color:rgba(44, 42, 42, 0.4);" class="step-num">02</div>
+      <div class="step-icon">📋</div>
+      <h3>Document Hub</h3>
+      <p>Every document explained in Arabic and French. Step-by-step tutorials: which office, what to say, exactly what you need.</p>
+    </div>
+    <div class="step-card">
+      <div style="color:rgba(44, 42, 42, 0.4);" class="step-num">03</div>
+      <div class="step-icon">🏛️</div>
+      <h3>University Wizard</h3>
+      <p>Apply step-by-step to each university. Deadlines, Universitaly guide, motivation letter templates — all included.</p>
+    </div>
+    <div class="step-card">
+      <div style="color:rgba(44, 42, 42, 0.4);" class="step-num">04</div>
+      <div class="step-icon">💬</div>
+      <h3>AI Chat Guide</h3>
+      <p>Ask anything, anytime. Edge cases, confusing forms, Italian bureaucracy — our AI handles it 24/7 so you never get stuck.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing fade-up" id="pricing">
+  <div style="text-align:center;">
+    <div class="section-label">Simple pricing</div>
+    <div class="section-title">One payment. No surprises.</div>
+    <p style="color:var(--olive);margin-top:12px;font-size:16px;">Pay once. Get your Italian university application done.</p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- FREE -->
+    <div class="price-card">
+      <div class="plan-name">Free</div>
+      <div class="price-amount">0 <span style="font-size:16px;font-family:'DM Sans';font-weight:300">TND</span></div>
+      <div class="price-period">To get started</div>
+      <div class="price-divider"></div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Personalized roadmap preview</li>
+        <li><span class="check">✓</span> 3 document tutorials</li>
+        <li><span class="check">✓</span> 5 AI questions per day</li>
+        <li><span class="check">✓</span> Scholarship calendar</li>
+        <li style="opacity:0.3">✕ Full AI guidance</li>
+        <li style="opacity:0.3">✕ Application wizard</li>
+      </ul>
+      <button class="price-btn price-btn-outline">Start for free</button>
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="price-card featured">
+      <div class="featured-tag">Most popular</div>
+      <div class="plan-name">Premium</div>
+      <div class="price-amount">249 <span style="font-size:16px;font-family:'DM Sans';font-weight:300;color:rgba(255,255,255,0.4)">TND</span></div>
+      <div class="price-period">One-time — do it yourself with AI</div>
+      <div class="price-divider"></div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Full document checklist + all tutorials</li>
+        <li><span class="check">✓</span> Unlimited AI chat in 3 languages</li>
+        <li><span class="check">✓</span> Application wizard per university</li>
+        <li><span class="check">✓</span> Motivation letter generator</li>
+        <li><span class="check">✓</span> Document upload + AI audit</li>
+        <li><span class="check">✓</span> Deadline alerts & progress tracking</li>
+      </ul>
+      <button class="price-btn price-btn-primary">Get Premium →</button>
+    </div>
+
+    <!-- VIP -->
+    <div class="price-card vip">
+      <div class="vip-tag">✦ VIP</div>
+      <div class="plan-name">VIP — Done For You</div>
+      <div class="price-amount" style="font-size:48px">949 <span style="font-size:16px;font-family:'DM Sans';font-weight:300;color:rgba(255,255,255,0.4)">TND</span></div>
+      <div class="price-period">500 TND now · 449 TND after acceptance</div>
+      <div class="price-divider"></div>
+      <ul class="feature-list">
+        <li><span class="check">✓</span> Everything in Premium</li>
+        <li><span class="check">✓</span> We handle your full application</li>
+        <li><span class="check">✓</span> 24h document audit report</li>
+        <li><span class="check">✓</span> University matching for your profile</li>
+        <li><span class="check">✓</span> Motivation letter written & reviewed</li>
+        <li><span class="check">✓</span> WhatsApp direct support</li>
+        <li><span class="check">✓</span> Visa + DSU guidance after acceptance</li>
+      </ul>
+      <button class="price-btn price-btn-gold">Apply for VIP →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust fade-up">
+  <div class="section-label">Why trust us</div>
+  <div class="section-title" style="max-width:600px;margin:0 auto">Built by someone who<br>went through this.</div>
+
+  <div class="trust-grid">
+    <div class="trust-item">
+      <div class="trust-icon">🇹🇳</div>
+      <h4>Tunisian-built</h4>
+      <p>We know the exact pain points from the BSEA system to the Italian consulate in Tunis.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔍</div>
+      <h4>Full transparency</h4>
+      <p>Real-time progress tracking. See every step of your application — unlike agencies that go silent.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🤖</div>
+      <h4>AI + human expertise</h4>
+      <p>Powered by advanced AI trained on Italian university requirements, with human review on VIP.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Your Italian chapter<br>starts <em>today.</em></h2>
+  <p>Don't wait for an agency. Don't pay 7,000 TND for paperwork.<br>Start your application in minutes.</p>
+  <div class="cta-actions">
+    <a href="#pricing" class="btn-light">Get started free</a>
+    <a href="https://wa.me/" class="btn-outline-light">💬 WhatsApp for VIP</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Studi<span>Amo</span></div>
+  <div>© 2025 StudiAmo. All rights reserved.</div>
+  <div>Made in 🇹🇳 for Italy 🇮🇹</div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Animated typing simulation
+  const messages = [
+    { type: 'user', text: "Comment obtenir l'apostille sur mon diplôme ?" },
+    { type: 'ai', text: "L'apostille se fait au <strong>Ministère de la Justice</strong> à Tunis, rue Bab Bnet. Apportez votre diplôme original + copie + 7 TND de timbre. Délai : 3 jours. Je vous montre la liste complète ?" },
+    { type: 'user', text: "Quelles universités acceptent la licence en informatique ?" },
+    { type: 'ai', text: "Basé sur votre profil : <strong>Politecnico di Milano</strong>, <strong>Univ. di Bologna</strong>, et <strong>La Sapienza Roma</strong> correspondent à vos critères. Deadlines en Février. Voulez-vous le guide détaillé pour chacune ?" },
+  ];
+
+  let msgIdx = 0;
+
+  function rotateChatMessages() {
+    const userBubbles = document.querySelectorAll('.chat-user');
+    const aiBubbles = document.querySelectorAll('.chat-ai');
+    if (!userBubbles.length) return;
+
+    const pairs = [
+      {
+        user: "Comment obtenir l'apostille sur mon diplôme ?",
+        ai: "L'apostille se fait au <strong>Ministère de la Justice</strong> à Tunis, rue Bab Bnet. Apportez votre diplôme original + copie + 7 TND. Délai : 3 jours ouvrables. Voulez-vous la liste complète ?"
+      },
+      {
+        user: "Quelles universités acceptent ma licence informatique ?",
+        ai: "Basé sur votre profil : <strong>Politecnico di Milano</strong>, <strong>Univ. Bologna</strong>, et <strong>La Sapienza</strong> correspondent. Deadlines en Février. Guide détaillé par université ?"
+      },
+      {
+        user: "Ma question sur la Dichiarazione di Valore ?",
+        ai: "Elle est délivrée par le <strong>Consulat d'Italie à Tunis</strong>. Apportez diplômes originaux + traductions assermentées. Frais : 50–80 TND. Délai : 3–10 jours. Je vous montre la checklist ?"
+      }
+    ];
+
+    msgIdx = (msgIdx + 1) % pairs.length;
+    userBubbles[0].style.opacity = '0';
+    aiBubbles[0].style.opacity = '0';
+
+    setTimeout(() => {
+      userBubbles[0].textContent = pairs[msgIdx].user;
+      aiBubbles[0].innerHTML = pairs[msgIdx].ai;
+      userBubbles[0].style.transition = 'opacity 0.5s';
+      aiBubbles[0].style.transition = 'opacity 0.5s';
+      userBubbles[0].style.opacity = '1';
+      aiBubbles[0].style.opacity = '1';
+    }, 400);
+  }
+
+  setInterval(rotateChatMessages, 4000);
+</script>
+</body>
+</html>
