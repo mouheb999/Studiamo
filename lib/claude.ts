@@ -22,7 +22,9 @@ Règles:
 - Structure tes réponses avec des listes et des étapes numérotées quand c'est utile`
 
 export function createClaudeClient() {
-  return new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY!,
-  })
+  const apiKey = process.env.ANTHROPIC_API_KEY
+  if (!apiKey) {
+    throw new Error('ANTHROPIC_API_KEY environment variable is not set')
+  }
+  return new Anthropic({ apiKey })
 }
