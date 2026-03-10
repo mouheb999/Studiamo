@@ -191,7 +191,7 @@ export default function ChatPage() {
                 Bonjour ! Comment puis-je vous aider ?
               </h2>
               <p className="text-ink/60">
-                Posez-moi n'importe quelle question sur votre candidature aux universités italiennes
+                Posez-moi n&apos;importe quelle question sur votre candidature aux universités italiennes
               </p>
             </div>
 
@@ -308,7 +308,7 @@ export default function ChatPage() {
                 Limite atteinte
               </h3>
               <p className="text-ink/60 mb-4">
-                Vous avez utilisé vos 5 questions gratuites aujourd'hui.
+                Vous avez utilisé vos 5 questions gratuites aujourd&apos;hui.
               </p>
             </div>
 

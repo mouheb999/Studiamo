@@ -198,7 +198,7 @@ export default function DashboardPage() {
               <FileText className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h4 className="font-semibold text-ink mb-1">Obtenir l'apostille</h4>
+              <h4 className="font-semibold text-ink mb-1">Obtenir l&apos;apostille</h4>
               <p className="text-sm text-ink/60">
                 Rendez-vous au Ministère des Affaires Étrangères pour faire apostiller votre diplôme
               </p>

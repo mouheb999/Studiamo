@@ -152,7 +152,7 @@ export default function UpgradePage() {
             <Crown className="w-12 h-12 text-italian-red mx-auto mb-4" />
             <h3 className="text-2xl font-display font-bold text-ink mb-2">VIP</h3>
             <div className="text-4xl font-bold text-italian-red mb-2">949 TND</div>
-            <p className="text-sm text-ink/60">On s'occupe de tout</p>
+            <p className="text-sm text-ink/60">On s&apos;occupe de tout</p>
           </div>
 
           <div className="space-y-3 mb-6">

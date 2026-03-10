@@ -331,7 +331,7 @@ export default function OnboardingPage() {
 
               {/* Italian Level */}
               <div className="space-y-3">
-                <Label className="text-base font-semibold">Niveau d'italien</Label>
+                <Label className="text-base font-semibold">Niveau d&apos;italien</Label>
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
                   {ITALIAN_LEVELS.map((level) => (
                     <button
@@ -423,7 +423,7 @@ export default function OnboardingPage() {
               <div className="bg-mist rounded-xl p-6 border border-primary/20">
                 <p className="text-ink/70 text-sm">
                   <strong className="text-ink">Note:</strong> Ces étapes sont personnalisées selon votre profil. 
-                  Vous pourrez suivre votre progression et obtenir de l'aide à chaque étape dans votre tableau de bord.
+                  Vous pourrez suivre votre progression et obtenir de l&apos;aide à chaque étape dans votre tableau de bord.
                 </p>
               </div>
             </div>
