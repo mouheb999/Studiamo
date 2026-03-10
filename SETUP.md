@@ -23,7 +23,7 @@ npm install
 2. Click **New Query**
 3. Copy the entire contents of `supabase/migrations/001_initial.sql`
 4. Paste and click **Run**
-5. Verify tables were created in **Table Editor**
+5. Verify tables were created in **Table Editor** 
 
 ### ✅ Step 4: Get Anthropic API Key
 
